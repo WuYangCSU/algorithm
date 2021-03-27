@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 对选择排序进行优化，一次取一个最大值和一个最小值。最大值放后面，最小值放前面 -->
+  <div>选择排序前</div>
+  <div>选择排序后：</div>
+  <div></div>
+  <script>
+    let arr=[10,5,7,3,2,9,8]
+    function selectionSort(arr){
+      for(j=0;j<arr.length/2-1;j++){
+        let minPos = j
+        let maxVal=arr.length-j-1
+        let maxPos=j
+          for(i=j+1; i <arr.length-j;i++){
+            if(arr[i]<arr[minPos]){
+              minPos=i
+            }
+             if(arr[i]>arr[maxPos]) {
+                  maxPos=i
+            }
+          }
+          let temp1=arr[j]
+          let temp2=arr[maxVal]
+          
+          arr[j]=arr[minPos]
+          arr[minPos]=temp1
+          if (maxPos===j) {
+           maxPos=minPos
+          }
+          arr[maxVal]=arr[maxPos]
+          arr[maxPos]=temp2
+      }
+          return arr
+    }
+    let elements=document.getElementsByTagName("div")
+        elements[0].innerHTML="选择排序前："+arr
+        let arr2=selectionSort(arr)
+        elements[1].innerHTML="选择排序后："+arr2
+  </script>
+</body>
+</html>

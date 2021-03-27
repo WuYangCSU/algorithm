@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>选择排序前</div>
+  <div>选择排序后：</div>
+  <div></div>
+  <script>
+    let arr=[10,5,7,3,2,9,8]
+    function selectionSort(arr){
+      if(arr.length===0){
+        console.log("输入数组为空");
+        return null
+      }
+      for(j=0;j<arr.length-1;j++){
+        let minPos = j
+          for(i=j+1; i <arr.length;i++){
+            if(arr[i]<arr[minPos]){
+              minPos=i
+            }
+          }
+          let temp=arr[j]
+          arr[j]=arr[minPos]
+          arr[minPos]=temp
+      }
+         
+
+          console.log(arr);
+          return arr
+    }
+    let elements=document.getElementsByTagName("div")
+        elements[0].innerHTML="选择排序前："+arr
+        elements[1].innerHTML="选择排序后："+selectionSort(arr)
+  </script>
+</body>
+</html>
