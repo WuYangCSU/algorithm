@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="module">
+    import {checking3} from './01_logarithmGenerator.js'
+    let arr = [1, 4, 6, 7, 10, 2, 3, 5, 8, 9]
+// 归并算法 ，该算法稳定
+    function mergeSort(arr, left, right) {
+      if(left>right){
+        console.log("数组出错")
+        return 
+      }
+      if (left == right) return ;
+      let mid = Math.floor(left + (right - left)/2) 
+      mergeSort(arr, left, mid)
+      mergeSort(arr, mid + 1, right)
+      merge(arr, left, mid + 1, right)
+     
+    }
+
+    function merge(arr, leftPointer, rightPointer, rightBoundary) {
+      let temp = new Array(rightBoundary - leftPointer + 1)
+      let k = 0
+      let lp = leftPointer
+      let rp = rightPointer
+      while (lp < rightPointer && rp <= rightBoundary) {
+        if (arr[lp] <= arr[rp]) {
+          temp[k] = arr[lp]
+          k++
+          lp++
+        } else {
+          temp[k] = arr[rp]
+          k++
+          rp++
+        }
+      }
+      while (lp < rightPointer) {
+        temp[k] = arr[lp]
+        k++
+        lp++
+      }
+      while (rp <= rightBoundary) {
+        temp[k] = arr[rp]
+        k++
+        rp++
+      }
+      temp.forEach((value, index) => {
+        arr[leftPointer + index] = temp[index]
+      })
+    }
+    mergeSort(arr, 0, arr.length - 1)
+    console.log(arr);
+    checking3(mergeSort)
+  </script>
+</body>
+
+</html>
