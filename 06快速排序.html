@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="module">
+    import {checking3} from './01_logarithmGenerator.js'
+    let arr = [1, 9,7]
+
+    function quickSort(arr, left, right) {
+      if (left >= right) return
+      let pivot = sort(arr, left, right)
+       quickSort(arr, left, pivot - 1)
+       quickSort(arr, pivot+1, right)
+     console.log(arr); 
+    }
+
+    function sort(arr, left, right) {
+     let lp = left 
+     let  rp = right -1
+      while(lp<=rp){
+       while(lp<=rp && arr[lp]<=arr[right]){
+         lp++
+       }
+
+       while(lp<=rp && arr[rp]>arr[right]){
+          rp--
+       }
+    if(lp<rp)swap(arr,lp,rp)
+     }
+     let povit = lp
+     swap(arr,lp,right)
+     return povit
+      }
+      // 数组元素交换
+      function swap(arr, i, j) {
+        let temp = arr[i]
+        arr[i] = arr[j]
+        arr[j] = temp
+      }
+      quickSort(arr, 0,arr.length-1)
+        checking3(quickSort)
+  </script>
+</body>
+
+</html>
