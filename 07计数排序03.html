@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 对于数组如果不是从0开始，该怎么计数排序 -->
+    <script type="module">
+       import {checking5} from './01_logarithmGenerator.js'
+      let arr =[102,104,102,103,107,101,101,100,100,105,116,109,108,105,107,104,114,109]
+      function countSort(arr){
+        if(arr.length===0) return null
+          findMaxAndMin(arr)
+          let min = arr[0]
+          let max = arr[arr.length -1]
+          let sub = arr[arr.length-1]-arr[0]+1
+          let count = new Array(sub).fill(0)
+          let result = new Array(arr.length)
+          for (let i = 0 ; i<arr.length;i++){
+            count[arr[i]-min]++
+          }
+          for(let i=1; i<count.length;i++){
+            count[i]=count[i]+count[i-1]
+          }
+         
+          for(let i =arr.length-1;i>=0;i-- ){
+                  result[--count[arr[i]-min]]=arr[i]
+          }
+          return result
+      }
+      
+      function findMaxAndMin(arr){
+        for(let i = 0;i<arr.length-1; i++){
+          if(arr[i]>arr[i+1])swap(arr,i,i+1)
+        }
+        for(let i=arr.length-1;i>0;i--){
+          if(arr[i]<arr[i-1])swap(arr,i,i-1)
+        }
+      }
+
+      function swap(arr,i,j){
+        let temp= arr[i]
+        arr[i]=arr[j]
+        arr[j]=temp
+      }
+      checking5(countSort)
+    </script>
+</body>
+</html>

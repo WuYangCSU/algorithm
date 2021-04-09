@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  >
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 基数排序 ：是多关键字排序的思想，对于数字中的每位数字进行排序。每位数字采用计数排序的方法进行排序-->
+  <script  type="module">
+     import {checking5} from './01_logarithmGenerator.js'
+ let arr =[202,308,142,133,517,121,501,320,210,465,376,159,128,735,137,214,664,909,275]
+      function baseSort(arr){
+        findMax(arr)
+        let max = arr[arr.length-1]
+        let index = max.toString().length
+        let result = new Array(arr.length)
+        for ( let i=0;i<index;i++ ){
+          let count=new Array(10).fill(0)
+          for(let j=arr.length-1;j>=0;j--){
+            let num =Math.floor(arr[j]/Math.pow(10,i))%10
+              count[num]++              
+        }
+        // 累加数组
+        for(let j=1;j<count.length;j++){
+          count[j]=count[j]+count[j-1]
+        }
+        for (let j = arr.length-1;j>=0;j--){
+          let num =Math.floor(arr[j]/Math.pow(10,i))%10
+            result[--count[num]]=arr[j]
+        }
+       for(let j=0;j<arr.length;j++){
+         arr[j]=result[j]
+       }
+      }
+return  result
+  }
+  function findMax(arr) {
+      for (let i = 0; i < arr.length - 1; i++) {
+        if (arr[i] > arr[i + 1]) swap(arr, i, i + 1)
+      }
+    }
+
+    function swap(arr, i, j) {
+      let temp = arr[i]
+      arr[i] = arr[j]
+      arr[j] = temp
+    }
+   let arr1= baseSort(arr)
+   checking5(baseSort)
+  </script>
+</body>
+
+</html>

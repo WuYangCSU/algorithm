@@ -23,14 +23,14 @@
       if (left >= right) return
       let pivot = sort(arr, left, right)
        quickSort(arr, left, pivot - 1)
-       quickSort(arr, pivot+1, right)
-     console.log(arr); 
+       quickSort(arr, pivot+1, right) 
     }
 
     function sort(arr, left, right) {
      let lp = left 
      let  rp = right -1
       while(lp<=rp){
+        // 等于号保证算法稳定性
        while(lp<=rp && arr[lp]<=arr[right]){
          lp++
        }
